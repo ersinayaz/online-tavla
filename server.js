@@ -10,13 +10,17 @@ const app = express();
 // HTTPS için self-signed sertifika oluştur
 let server;
 try {
-    // HTTPS sertifikası varsa kullan
-    const options = {
-        key: fs.readFileSync('key.pem'),
-        cert: fs.readFileSync('cert.pem')
-    };
-    server = https.createServer(options, app);
-    console.log('HTTPS sunucusu başlatılıyor...');
+    // HTTPS sertifikası varsa kullan (sadece local development için)
+    if (fs.existsSync('key.pem') && fs.existsSync('cert.pem')) {
+        const options = {
+            key: fs.readFileSync('key.pem'),
+            cert: fs.readFileSync('cert.pem')
+        };
+        server = https.createServer(options, app);
+        console.log('HTTPS sunucusu başlatılıyor...');
+    } else {
+        throw new Error('Sertifika dosyaları bulunamadı, HTTP kullanılacak');
+    }
 } catch (error) {
     // HTTPS yoksa HTTP kullan
     server = http.createServer(app);
