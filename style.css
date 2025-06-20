@@ -466,6 +466,21 @@ body {
     #video-chat {
         order: 2;
         margin: 15px 0;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .video-container {
+        width: 140px;
+        height: 105px;
+    }
+    
+    .video-controls {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
     }
     
     #backgammon-board {
@@ -630,8 +645,8 @@ body {
     }
     
     .video-container {
-        width: 120px;
-        height: 90px;
+        width: 130px;
+        height: 98px;
     }
     
     .video-btn {
