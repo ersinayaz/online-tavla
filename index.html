@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Tavla Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="connection-panel">
+            <h1>Online Tavla</h1>
+            <div id="connection-controls">
+                <button id="create-room">Oda Oluştur</button>
+                <input type="text" id="room-id" placeholder="Oda ID'si girin">
+                <button id="join-room">Odaya Katıl</button>
+            </div>
+            <div id="connection-status">Bağlantı bekleniyor...</div>
+        </div>
+
+        <div id="game-container" style="display: none;">
+            <div id="game-info">
+                <div id="player-info">
+                    <div class="player" id="player1">
+                        <span class="player-name">Oyuncu 1</span>
+                        <span class="player-color white">Beyaz</span>
+                    </div>
+                    <div class="player" id="player2">
+                        <span class="player-name">Oyuncu 2</span>
+                        <span class="player-color black">Siyah</span>
+                    </div>
+                </div>
+                
+                <!-- Video Chat Area -->
+                <div id="video-chat">
+                    <div class="video-container">
+                        <video id="local-video" autoplay muted playsinline></video>
+                        <div class="video-label">Siz</div>
+                    </div>
+                    <div class="video-container">
+                        <video id="remote-video" autoplay playsinline></video>
+                        <div class="video-label">Rakip</div>
+                    </div>
+                    <div class="video-controls">
+                        <button id="toggle-camera" class="video-btn">📹</button>
+                        <button id="toggle-mic" class="video-btn">🎤</button>
+                        <button id="end-call" class="video-btn">📞</button>
+                    </div>
+                </div>
+                
+                <div id="turn-info">
+                    <div id="current-turn"></div>
+                    <div id="dice-container">
+                        <div class="dice" id="dice1">1</div>
+                        <div class="dice" id="dice2">1</div>
+                        <button id="roll-dice">Zar At</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="board-container">
+                <div id="backgammon-board">
+                    <div class="board-section" id="top-section">
+                        <div class="point" data-point="13"></div>
+                        <div class="point" data-point="14"></div>
+                        <div class="point" data-point="15"></div>
+                        <div class="point" data-point="16"></div>
+                        <div class="point" data-point="17"></div>
+                        <div class="point" data-point="18"></div>
+                        <div class="board-divider"></div>
+                        <div class="point" data-point="19"></div>
+                        <div class="point" data-point="20"></div>
+                        <div class="point" data-point="21"></div>
+                        <div class="point" data-point="22"></div>
+                        <div class="point" data-point="23"></div>
+                        <div class="point" data-point="24"></div>
+                    </div>
+
+                    <div class="board-middle">
+                        <div class="bar" id="bar">
+                            <div class="bar-section" id="white-bar"></div>
+                            <div class="bar-section" id="black-bar"></div>
+                        </div>
+                    </div>
+
+                    <div class="board-section" id="bottom-section">
+                        <div class="point" data-point="12"></div>
+                        <div class="point" data-point="11"></div>
+                        <div class="point" data-point="10"></div>
+                        <div class="point" data-point="9"></div>
+                        <div class="point" data-point="8"></div>
+                        <div class="point" data-point="7"></div>
+                        <div class="board-divider"></div>
+                        <div class="point" data-point="6"></div>
+                        <div class="point" data-point="5"></div>
+                        <div class="point" data-point="4"></div>
+                        <div class="point" data-point="3"></div>
+                        <div class="point" data-point="2"></div>
+                        <div class="point" data-point="1"></div>
+                    </div>
+                </div>
+
+                <div class="bear-off-container">
+                    <div class="bear-off" id="white-bear-off">Beyaz Çıkarma</div>
+                    <div class="bear-off" id="black-bear-off">Siyah Çıkarma</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
